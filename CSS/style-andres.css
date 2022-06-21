@@ -1,0 +1,499 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box; /*Include padding and border in the element's total width and height:*/
+}
+
+
+/*Custom properties*/
+
+
+:root{
+    --ff-primary:'Cabin', sans-serif;
+    --ff-secondary:'Source Code Pro', sans-serif;
+    
+    --fw-reg:300;
+    --fw-bold:900;
+
+    --clr-light:#fff;
+    --clr-dark:#01294F;
+    --clr-accent:#0C86F7;
+
+    --fs-h1:3rem;
+    --fs-h2:2.25rem;
+    --fs-h3:1.25rem;
+    --fs-body:1rem;
+
+    --bs: 0.25em 0.25em 0.75em rgba(0,0,0,.80),
+          0.125em 0.125em 0.25em rgba(0,0,0,.60);
+    
+}
+
+@media(min-width:800px){
+    :root{
+        --fs-h1:4.5rem;
+        --fs-h2:3.75rem;
+        --fs-h3:1.5rem;
+        --fs-body:1.125rem;
+    }
+}
+
+
+/*General Styles*/
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--clr-dark);
+    color:var(--clr-light);
+    margin:0;
+    font-family: var(--ff-primary);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+}
+
+section{
+    padding: 5em 2em;
+}
+
+img{
+    display: block;
+    max-width:100%;
+}
+
+strong{
+    font-weight:var(--fw-bold);
+}
+
+:focus{
+    outline: 3px solid var(--clr-accent);/*when tab button is pressed highlight buttons*/
+    outline-offset:3px;
+}
+
+/*Buttons*/
+
+.btn{
+    display: inline-block; /*	Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values*/
+    padding: .5em 2.5em;
+    background-color: #F86D4A;
+    margin-top:15px;
+    color:var(--clr-light);
+    text-decoration: none;
+    cursor: pointer;
+    font-size:.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: var(--fw-bold);
+    transition: transform 50s ease-in-out;/*Make the button bigger when pointer is on it*/
+    border-radius: 50px;
+    box-shadow: var(--bs);
+}
+
+.btn-resume{
+    display:flex;
+    justify-content: center;
+}
+
+.btn:hover{
+    transform: scale(1.5);/*Make the button bigger when pointer is on it*/
+    color:var(--clr-dark);
+}
+
+/*Typography*/
+
+h1,
+h2,
+h3{
+    line-height: 1;
+    margin: 0;
+}
+
+
+h1{
+    font-size: var(--fs-h1);
+}
+
+h2{
+    font-size: var(--fs-h2);
+}
+
+h3{
+    font-size: var(--fs-h3);
+}
+
+
+.section_title{
+    margin-bottom:0.25em;
+}
+
+.section_title-intro{
+    font-weight: var(--fw-reg);
+}
+
+.section_title-intro strong{
+    display: block;
+    color: var(--clr-accent);
+}
+
+.section_subtitle{
+    margin:0;
+    font-size: var(--fs-h3);
+    
+}
+
+
+.section_subtitle-intro,
+.section_subtitle-about{
+    background-color: var(--clr-accent); /*********pending change**************/
+    padding: .25em 1em;
+    font-family: var(--ff-secondary);
+    margin-bottom: 1em;
+}
+
+.section_subtitle-work{
+    color:var(--clr-accent);
+    font-weight: var(--fw-bold);
+    margin-bottom: 2em;
+}
+
+
+
+
+/**nav bar section**/
+/******************************************/
+/******************************************/
+
+
+/*Intro Section*/
+
+.intro{
+    position:relative;
+}
+
+.intro_img{
+    box-shadow:var(--bs);
+}
+
+.section_subtitle-intro{
+    display: inline-block;  /*makes the blue highlither shrunk*/
+}
+
+
+@media(min-width:600px){
+    .intro{
+        display: grid;
+        width:min-content;
+        margin:0 auto;
+        grid-column-gap: 1em;
+        grid-template-areas:
+            "img title"
+            "img subtitle";
+        grid-template-columns: min-content max-content;  /*min and max of content size*/
+        
+    }
+
+    .intro_img{
+        grid-area:img;
+        min-width: 250px;
+        position:relative;
+        z-index: 2;
+    }
+
+    .section_subtitle-intro{
+        align-self:start;
+        grid-column: -1/1; /*it makes the subtitle cover expands horizontally */
+        grid-row: 2;
+        text-align: right;
+        position:relative;
+        left:-1.5em;  /*makes the blue highlight longer than the image*/
+        width:calc(100% +1.5em);
+    }
+}
+
+
+/*About me*/
+
+.about-me{
+    max-width: 1000px;
+    margin:0 auto;
+   
+}
+
+
+
+.about-me_img{
+    box-shadow: var(--bs);
+}
+
+
+
+@media(min-width:600px){
+    .about-me{
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        grid-template-areas:
+            "title img"
+            "subtitle img"
+            "text img"
+            "text img";
+        grid-column-gap:1em;
+    }
+
+    .section_title-about{
+        grid-area:title;
+    }
+
+    .section_subtitle-about{
+        grid-column:1/-1;/*it makes the subtitle cover expands horizontally */
+        grid-row:2;
+        position:relative;
+        left:-1em;
+        width:calc(100% + 2em);
+        padding-left: 1em;
+        padding-right:calc(200px + 6em) ; /* text never touches the image*/ 
+
+    }
+
+    .about-me_img{
+        grid-area:img;
+        position:relative;
+        z-index:2; /*puts imagen always over the blue box*/
+    }
+}
+
+/*My Skills*/
+
+.my-services{
+    color: var(--clr-light);
+    text-align: center;
+    
+}
+
+.codeimg{
+    background-color:white;
+    border-radius:20px;
+    box-shadow: var(--bs);
+    margin:10px;
+    
+   
+}
+
+
+.codeimg img{
+    width:60px;
+}
+figcaption{
+    color:black;
+    font-weight:var(--fw-bold);
+    font-size:14px;
+}
+
+.section-subtitle-services{
+    color: var(--clr-accent);
+    margin-bottom:10px;
+}
+
+
+.service{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    
+}
+
+
+@media(min-width:600px){ 
+    .service{
+        
+        display: flex;
+        flex-wrap:wrap;
+        
+    }
+}
+
+
+/*My Work*/
+
+.my-work{
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    text-align: center;
+}
+
+.portfolio{
+    display: grid;
+    margin:0 auto;
+
+    column-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));/*autofill the columns with the images and it alse depends on screen size*/
+    max-width:1000px/*maximon width for the images autofill*/
+}
+
+.portfolio_item{
+    background-color: var(--clr-dark);
+    overflow:hidden;
+}
+
+.portfolio_img{
+
+    
+    transition:
+        transform 750ms cubic-bezier(.5,0,.5,1), /*when pointer is on an image make it lighter*/
+        opacity 250ms linear;
+}
+
+.portfolio_padd{
+    padding-top: 15px;
+}
+
+.portfolio_item:focus{ /*this ruleset makes the highlight be over the image not under when tab is pressed*/
+    position:relative;
+    z-index:2;
+}
+
+.work_item{
+    color: #F86D4A;
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-bold);
+}
+
+
+.portfolio_img:hover,
+.portfolio_item:focus .portfolio_img{
+    transform:scale(1.05);/*makes images bigger when pointer goes through them*/
+    opacitiy:.75;
+}
+
+
+/*Contact */
+.sectionHead,
+.contactFormContainer{
+    padding: 20px;
+}
+
+.contactFormContainer p{
+    margin-bottom: 0;
+}
+
+.contactSection{
+    
+    background-color: white;
+    text-align: center;
+    color:var(--clr-accent);
+    border-radius: 50px;
+    box-shadow: var(--bs);
+    margin: 0 auto;
+    padding: 30px;
+    width:400px;
+    margin-bottom: 40px;
+}
+
+.contactTypes a{
+   text-decoration: none;
+}
+
+.contactFormContainer{
+    display:inline-flex;
+    flex-direction: column;
+}
+
+
+
+
+/*Footer*/
+
+footer{
+    background-color: #111;
+    color: var(--clr-accent);
+    text-align: center;
+    padding: 2.5em 0;
+    font-size: var(--fs-h3);
+}
+
+
+.footer a{
+    color: #F86D4A;
+    text-decoration: none;
+}
+
+.footer_link{
+    font-size: var(--fs-h3);
+    font-synthesis: var(--fw-bold);
+   
+}
+
+
+.footer_link:hover,
+.social-list_link:hover{
+    opacity: .7;
+}
+
+.footer_link:hover{
+    text-decoration: underline; /*put an underline below the email*/
+}
+
+
+
+.social-list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    font-size: 40px; /*Makes social media icons bigger*/
+    margin: 2em 0 0;
+    padding: 0;
+}
+
+.social-list_item{
+    margin: 0 .5em;
+}
+
+.social-list_link{
+    padding: .5em;
+}
+
+
+
+/*Navigation Bar*/
+
+header{
+    box-shadow:var(--bs) ;
+}
+.header_nav{
+    background-color: var(--clr-accent);
+    
+    padding: .1em 0;
+}
+
+.nav_home{
+    color:var(--clr-dark)!important;
+}
+
+.nav_header a{
+    text-decoration:none;
+    color:var(--clr-light);
+    font-weight: var(--fw-bold);
+}
+
+
+.nav_header{
+    list-style: none;
+    display: flex;
+    justify-content: flex-end; /*Makes social media icons bigger*/
+    padding: 0px;
+}
+
+.nav_link{
+    padding: 0 20px;
+}
+
+.nav_link a:hover{
+    color:var(--clr-dark);
+}
+
+.design-by p{
+    font-size:13px;
+    color: #F86D4A;
+}
+
